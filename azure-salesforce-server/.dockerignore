@@ -1,0 +1,29 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore virtual environments
+venv/
+.env/
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Ignore package manager caches
+pip-log.txt
+pip-delete-this-directory.txt
+poetry.lock
+
+# Ignore logs
+logs/
+*.log
+logs/*
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Docker-related files
+docker-compose.override.yml
