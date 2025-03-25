@@ -5,6 +5,7 @@ services:
     build:
       context: ./azure-salesforce-app
       dockerfile: Dockerfile
+    image: azure-salesforce-app:latest
     ports:
       - "3000:3000"
     depends_on:
@@ -16,6 +17,7 @@ services:
     build:
       context: ./azure-salesforce-server
       dockerfile: Dockerfile
+    image: azure-salesforce-server:latest
     ports:
       - "8000:8000"
     environment:
