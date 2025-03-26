@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const Protected = ({ children }: React.PropsWithChildren) => {
   const { data: session, status } = useSession();
@@ -14,7 +15,7 @@ const Protected = ({ children }: React.PropsWithChildren) => {
     return <div>{children} </div>;
   }
 
-  return <a href="/api/auth/signin">Sign in</a>;
+  return <Link href="/api/auth/signin">Sign in</Link>;
 };
 
 export default Protected;
