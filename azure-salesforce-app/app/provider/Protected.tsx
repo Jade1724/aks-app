@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const Protected = ({ children }: React.PropsWithChildren) => {
   const [envVars, setEnvVars] = useState<object>();
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   const getEnvVars = async () => {
     const envVars = await testEnvVars();
