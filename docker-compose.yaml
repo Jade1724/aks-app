@@ -5,13 +5,13 @@ services:
     build:
       context: ./azure-salesforce-app
       dockerfile: Dockerfile
-    image: azure-salesforce-app
+    image: azure-salesforce-app:3
     ports:
       - "3000:3000"
     depends_on:
       - backend
-    environment:
-      - NEXT_PUBLIC_API_URL=http://backend:8000 # The frontend will call FastAPI using this URL
+    env_file:
+      - ./azure-salesforce-app/.env
 
   backend:
     build:
@@ -20,6 +20,5 @@ services:
     image: azure-salesforce-server
     ports:
       - "8000:8000"
-    environment:
-      - UVICORN_HOST=0.0.0.0
-      - UVICORN_PORT=8000
+    env_file:
+      - ./azure-salesforce-server/.env
