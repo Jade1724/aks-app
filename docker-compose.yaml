@@ -5,7 +5,7 @@ services:
     build:
       context: ./azure-salesforce-app
       dockerfile: Dockerfile
-    image: azure-salesforce-app:3
+    image: azure-salesforce-app:4
     ports:
       - "3000:3000"
     depends_on:
