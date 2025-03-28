@@ -15,7 +15,7 @@ const Protected = ({ children }: React.PropsWithChildren) => {
   };
   useEffect(() => {
     getEnvVars();
-  });
+  }, []);
 
   if (status === "loading") {
     return <p>Loading... {JSON.stringify(envVars)}</p>;
