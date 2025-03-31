@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { testEnvVars } from "../server/test";
 import { useEffect, useState } from "react";
+import "@salesforce/canvas-js-sdk";
 
 const Protected = ({ children }: React.PropsWithChildren) => {
   const [envVars, setEnvVars] = useState<object>();
@@ -28,7 +29,11 @@ const Protected = ({ children }: React.PropsWithChildren) => {
     );
   }
 
-  return <Link href="/api/auth/signin">Sign in {JSON.stringify(envVars)}</Link>;
+  return (
+    <Link href="/api/auth/signin">
+      Sign in {JSON.stringify(envVars)} <h1>cross-site-cookie16</h1>
+    </Link>
+  );
 };
 
 export default Protected;
