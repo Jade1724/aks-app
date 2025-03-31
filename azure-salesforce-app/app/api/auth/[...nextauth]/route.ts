@@ -14,6 +14,35 @@ const handler = NextAuth({
   session: {
     strategy: "jwt",
   },
+  cookies: {
+    sessionToken: {
+      name: process.env.TOKEN_NAME!,
+      options: {
+        httpOnly: false,
+        sameSite: "none",
+        secure: false,
+      },
+    },
+    state: {
+      name: `next-auth.state`,
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+        maxAge: 900,
+      },
+    },
+    csrfToken: {
+      name: `__Host-next-auth.csrf-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+  },
 });
 
 export { handler as GET, handler as POST };
