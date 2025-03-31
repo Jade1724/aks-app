@@ -16,17 +16,24 @@ const handler = NextAuth({
   },
   cookies: {
     sessionToken: {
-      name: process.env.TOKEN_NAME!,
+      name: `next-auth.session-token`,
       options: {
-        httpOnly: false,
         sameSite: "none",
-        secure: false,
+        path: "/",
+        secure: true,
+      },
+    },
+    callbackUrl: {
+      name: `next-auth.callback-url`,
+      options: {
+        sameSite: "none",
+        path: "/",
+        secure: true,
       },
     },
     state: {
       name: `next-auth.state`,
       options: {
-        httpOnly: true,
         sameSite: "none",
         path: "/",
         secure: true,
@@ -34,9 +41,8 @@ const handler = NextAuth({
       },
     },
     csrfToken: {
-      name: `__Host-next-auth.csrf-token`,
+      name: `next-auth.csrf-token`,
       options: {
-        httpOnly: true,
         sameSite: "none",
         path: "/",
         secure: true,
