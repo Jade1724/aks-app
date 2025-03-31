@@ -1,8 +1,8 @@
 "use client";
 import { getServerUrl } from "@/utils/server";
-import axios from "axios";
 import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
+import "@salesforce/canvas-js-sdk";
 
 interface Item {
   item_id: string;
@@ -14,8 +14,14 @@ export default function Home() {
   const getItem = async () => {
     try {
       const SERVER_URL = await getServerUrl();
-      const res = await axios.get(SERVER_URL + "/items/1?q=testing");
-      setData(res.data);
+      // const res = await axios.get(SERVER_URL + "/items/1?q=testing");
+      // setData(res.data);
+      setData(
+        {
+          item_id: "1",
+          q: 1,
+        } as Item
+      )
     } catch (error) {
       console.error(error);
       setData(null);
