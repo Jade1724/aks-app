@@ -14,6 +14,9 @@ const handler = NextAuth({
   session: {
     strategy: "jwt",
   },
+  pages: {
+    signIn: "/auth/signin",
+  },
   cookies: {
     sessionToken: {
       name: `next-auth.session-token`,
