@@ -1,14 +1,22 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 export default function SignIn() {
+  const { status } = useSession();
 
   useEffect(() => {
-    signIn("azure-ad")}, []);
+    if (status === "authenticated") {
+      window.close();
+    }
+  }, [status]);
 
-  return (
-    <></>
-  );
+  useEffect(() => {
+    signIn("azure-ad", {
+      redirect: false,
+    });
+  }, []);
+
+  return <></>;
 }
