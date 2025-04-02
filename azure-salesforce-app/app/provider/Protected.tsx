@@ -57,7 +57,7 @@ const Protected = ({ children }: React.PropsWithChildren) => {
 
   return (
     <button onClick={() => handlePopupSignIn()}>
-      Sign in {JSON.stringify(envVars)} <h1>cross-site-cookie19</h1>
+      Sign in {JSON.stringify(envVars)}
     </button>
   );
 };
