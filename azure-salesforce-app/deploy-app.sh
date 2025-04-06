@@ -19,9 +19,9 @@ TAG=$1
 
 az login --tenant $AZURE_TENANT_ID
 
-az acr login --name azuresalesforceconn
+az acr login --name $AZURE_ACR_NAME
 
 
-docker buildx build --platform linux/amd64 -t azuresalesforceconn.azurecr.io/aks-azure-salesforce/azure-salesforce-connect-frontend:$TAG .
-docker push azuresalesforceconn.azurecr.io/aks-azure-salesforce/azure-salesforce-connect-frontend:$TAG
+docker buildx build --platform linux/amd64 -t $AZURE_ACR_NAME.azurecr.io/aks-azure-salesforce/azure-salesforce-connect-frontend:$TAG .
+docker push $AZURE_ACR_NAME.azurecr.io/aks-azure-salesforce/azure-salesforce-connect-frontend:$TAG
 
