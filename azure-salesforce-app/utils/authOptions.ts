@@ -4,16 +4,16 @@ import { AuthOptions } from "next-auth";
 
 export const getAuthOptions = async (): Promise<AuthOptions> => {
   const secret = await loadNextAuthSecrets();
-  console.log(secret);
+
   return {
     providers: [
       AzureADProvider({
-        clientId: process.env.AZURE_CLIENT_ID as string,
-        clientSecret: process.env.AZURE_CLIENT_SECRET as string,
-        tenantId: process.env.AZURE_TENANT_ID,
+        clientId: secret.AZURE_CLIENT_ID as string,
+        clientSecret: secret.AZURE_CLIENT_SECRET as string,
+        tenantId: secret.AZURE_TENANT_ID,
       }),
     ],
-    secret: process.env.NEXTAUTH_SECRET, // Secret for JWT
+    secret: secret.NEXTAUTH_SECRET, // Secret for JWT
     session: {
       strategy: "jwt",
     },
