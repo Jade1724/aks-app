@@ -1,9 +1,10 @@
 import AzureADProvider from "next-auth/providers/azure-ad";
-import { getKeyVaultSecret } from "./authSecrets";
+import { getKeyVaultSecret, loadNextAuthSecrets } from "./authSecrets";
 import { AuthOptions } from "next-auth";
 
 export const getAuthOptions = async (): Promise<AuthOptions> => {
-  const secret = await getKeyVaultSecret("AZURE-CLIENT-SECRET");
+  const secret = await loadNextAuthSecrets();
+  console.log(secret);
   return {
     providers: [
       AzureADProvider({

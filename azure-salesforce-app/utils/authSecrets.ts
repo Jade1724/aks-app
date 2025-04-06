@@ -18,3 +18,33 @@ export const getKeyVaultSecret = async (secretName: string) => {
         throw error;
     }
 }
+
+const nextAuthSecretMap = [
+    {
+        name: "AZURE_CLIENT_ID",
+        secretName: "AZURE-CLIENT-ID",
+    }, {
+        name: "AZURE_CLIENT_SECRET",
+        secretName: "AZURE-CLIENT-SECRET",
+    },
+    {
+        name: "AZURE_TENANT_ID",
+        secretName: "AZURE-TENANT-ID",
+    },
+    {
+        name: "NEXTAUTH_SECRET",
+        secretName: "NEXTAUTH-SECRET",
+    }
+] as const;
+
+export type NextAuthSecrets = Partial<
+  Record<(typeof nextAuthSecretMap)[number]["name"], string>
+>;
+
+export const loadNextAuthSecrets = async () => {
+    let secrets: NextAuthSecrets = {};
+    await Promise.all(nextAuthSecretMap.map(async (item) => {
+        secrets[item.name] = await getKeyVaultSecret(item.secretName);
+    } ))
+    return secrets;
+}
